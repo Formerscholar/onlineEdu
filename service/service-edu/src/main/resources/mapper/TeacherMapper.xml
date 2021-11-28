@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chad.eduservice.mapper.TeacherMapper">
+  <resultMap id="BaseResultMap" type="com.chad.eduservice.model.Teacher">
+    <!--@mbg.generated-->
+    <!--@Table guli_edu.edu_teacher-->
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="intro" jdbcType="VARCHAR" property="intro" />
+    <result column="career" jdbcType="VARCHAR" property="career" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="is_deleted" jdbcType="BOOLEAN" property="is_deleted" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmt_create" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmt_modified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, intro, career, `level`, avatar, sort, is_deleted, gmt_create, gmt_modified
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update guli_edu.edu_teacher
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.name,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="intro = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.intro,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="career = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.career,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`level` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.level,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="avatar = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.avatar,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="sort = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.sort,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="is_deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.is_deleted,jdbcType=BOOLEAN}
+        </foreach>
+      </trim>
+      <trim prefix="gmt_create = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.gmt_create,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="gmt_modified = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.gmt_modified,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=CHAR}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update guli_edu.edu_teacher
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.name != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.name,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="intro = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.intro != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.intro,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="career = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.career != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.career,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`level` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.level != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.level,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="avatar = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.avatar != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.avatar,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="sort = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sort != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.sort,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.is_deleted != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.is_deleted,jdbcType=BOOLEAN}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="gmt_create = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.gmt_create != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.gmt_create,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="gmt_modified = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.gmt_modified != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.gmt_modified,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=CHAR}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into guli_edu.edu_teacher
+    (id, `name`, intro, career, `level`, avatar, sort, is_deleted, gmt_create, gmt_modified
+      )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id,jdbcType=CHAR}, #{item.name,jdbcType=VARCHAR}, #{item.intro,jdbcType=VARCHAR}, 
+        #{item.career,jdbcType=VARCHAR}, #{item.level,jdbcType=INTEGER}, #{item.avatar,jdbcType=VARCHAR}, 
+        #{item.sort,jdbcType=INTEGER}, #{item.is_deleted,jdbcType=BOOLEAN}, #{item.gmt_create,jdbcType=TIMESTAMP}, 
+        #{item.gmt_modified,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" parameterType="com.chad.eduservice.model.Teacher">
+    <!--@mbg.generated-->
+    insert into guli_edu.edu_teacher
+    (id, `name`, intro, career, `level`, avatar, sort, is_deleted, gmt_create, gmt_modified
+      )
+    values
+    (#{id,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{intro,jdbcType=VARCHAR}, #{career,jdbcType=VARCHAR}, 
+      #{level,jdbcType=INTEGER}, #{avatar,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{is_deleted,jdbcType=BOOLEAN}, #{gmt_create,jdbcType=TIMESTAMP}, #{gmt_modified,jdbcType=TIMESTAMP}
+      )
+    on duplicate key update 
+    id = #{id,jdbcType=CHAR}, 
+    `name` = #{name,jdbcType=VARCHAR}, 
+    intro = #{intro,jdbcType=VARCHAR}, 
+    career = #{career,jdbcType=VARCHAR}, 
+    `level` = #{level,jdbcType=INTEGER}, 
+    avatar = #{avatar,jdbcType=VARCHAR}, 
+    sort = #{sort,jdbcType=INTEGER}, 
+    is_deleted = #{is_deleted,jdbcType=BOOLEAN}, 
+    gmt_create = #{gmt_create,jdbcType=TIMESTAMP}, 
+    gmt_modified = #{gmt_modified,jdbcType=TIMESTAMP}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="com.chad.eduservice.model.Teacher">
+    <!--@mbg.generated-->
+    insert into guli_edu.edu_teacher
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="intro != null">
+        intro,
+      </if>
+      <if test="career != null">
+        career,
+      </if>
+      <if test="level != null">
+        `level`,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="is_deleted != null">
+        is_deleted,
+      </if>
+      <if test="gmt_create != null">
+        gmt_create,
+      </if>
+      <if test="gmt_modified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null">
+        #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="career != null">
+        #{career,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="is_deleted != null">
+        #{is_deleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="gmt_create != null">
+        #{gmt_create,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmt_modified != null">
+        #{gmt_modified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null">
+        intro = #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="career != null">
+        career = #{career,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        `level` = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="is_deleted != null">
+        is_deleted = #{is_deleted,jdbcType=BOOLEAN},
+      </if>
+      <if test="gmt_create != null">
+        gmt_create = #{gmt_create,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmt_modified != null">
+        gmt_modified = #{gmt_modified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

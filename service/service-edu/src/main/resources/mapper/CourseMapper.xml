@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chad.eduservice.mapper.CourseMapper">
+  <resultMap id="BaseResultMap" type="com.chad.eduservice.model.Course">
+    <!--@mbg.generated-->
+    <!--@Table guli_edu.edu_course-->
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="teacher_id" jdbcType="CHAR" property="teacher_id" />
+    <result column="subject_id" jdbcType="CHAR" property="subject_id" />
+    <result column="subject_parent_id" jdbcType="CHAR" property="subject_parent_id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="lesson_num" jdbcType="INTEGER" property="lesson_num" />
+    <result column="cover" jdbcType="VARCHAR" property="cover" />
+    <result column="buy_count" jdbcType="BIGINT" property="buy_count" />
+    <result column="view_count" jdbcType="BIGINT" property="view_count" />
+    <result column="version" jdbcType="BIGINT" property="version" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="is_deleted" jdbcType="TINYINT" property="is_deleted" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmt_create" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmt_modified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, teacher_id, subject_id, subject_parent_id, title, price, lesson_num, cover, buy_count, 
+    view_count, version, `status`, is_deleted, gmt_create, gmt_modified
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update guli_edu.edu_course
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="teacher_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.teacher_id,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="subject_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.subject_id,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="subject_parent_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.subject_parent_id,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="title = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.title,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.price,jdbcType=DECIMAL}
+        </foreach>
+      </trim>
+      <trim prefix="lesson_num = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.lesson_num,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="cover = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.cover,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="buy_count = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.buy_count,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="view_count = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.view_count,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="version = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.version,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.status,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="is_deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.is_deleted,jdbcType=TINYINT}
+        </foreach>
+      </trim>
+      <trim prefix="gmt_create = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.gmt_create,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="gmt_modified = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.gmt_modified,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=CHAR}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update guli_edu.edu_course
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="teacher_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.teacher_id != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.teacher_id,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="subject_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.subject_id != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.subject_id,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="subject_parent_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.subject_parent_id != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.subject_parent_id,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="title = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.title != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.title,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.price != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.price,jdbcType=DECIMAL}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="lesson_num = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.lesson_num != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.lesson_num,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cover = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.cover != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.cover,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="buy_count = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.buy_count != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.buy_count,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="view_count = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.view_count != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.view_count,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="version = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.version != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.version,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.status != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.status,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.is_deleted != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.is_deleted,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="gmt_create = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.gmt_create != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.gmt_create,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="gmt_modified = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.gmt_modified != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.gmt_modified,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=CHAR}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into guli_edu.edu_course
+    (id, teacher_id, subject_id, subject_parent_id, title, price, lesson_num, cover, 
+      buy_count, view_count, version, `status`, is_deleted, gmt_create, gmt_modified)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id,jdbcType=CHAR}, #{item.teacher_id,jdbcType=CHAR}, #{item.subject_id,jdbcType=CHAR}, 
+        #{item.subject_parent_id,jdbcType=CHAR}, #{item.title,jdbcType=VARCHAR}, #{item.price,jdbcType=DECIMAL}, 
+        #{item.lesson_num,jdbcType=INTEGER}, #{item.cover,jdbcType=VARCHAR}, #{item.buy_count,jdbcType=BIGINT}, 
+        #{item.view_count,jdbcType=BIGINT}, #{item.version,jdbcType=BIGINT}, #{item.status,jdbcType=VARCHAR}, 
+        #{item.is_deleted,jdbcType=TINYINT}, #{item.gmt_create,jdbcType=TIMESTAMP}, #{item.gmt_modified,jdbcType=TIMESTAMP}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" parameterType="com.chad.eduservice.model.Course">
+    <!--@mbg.generated-->
+    insert into guli_edu.edu_course
+    (id, teacher_id, subject_id, subject_parent_id, title, price, lesson_num, cover, 
+      buy_count, view_count, version, `status`, is_deleted, gmt_create, gmt_modified)
+    values
+    (#{id,jdbcType=CHAR}, #{teacher_id,jdbcType=CHAR}, #{subject_id,jdbcType=CHAR}, #{subject_parent_id,jdbcType=CHAR}, 
+      #{title,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{lesson_num,jdbcType=INTEGER}, 
+      #{cover,jdbcType=VARCHAR}, #{buy_count,jdbcType=BIGINT}, #{view_count,jdbcType=BIGINT}, 
+      #{version,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR}, #{is_deleted,jdbcType=TINYINT}, 
+      #{gmt_create,jdbcType=TIMESTAMP}, #{gmt_modified,jdbcType=TIMESTAMP})
+    on duplicate key update 
+    id = #{id,jdbcType=CHAR}, 
+    teacher_id = #{teacher_id,jdbcType=CHAR}, 
+    subject_id = #{subject_id,jdbcType=CHAR}, 
+    subject_parent_id = #{subject_parent_id,jdbcType=CHAR}, 
+    title = #{title,jdbcType=VARCHAR}, 
+    price = #{price,jdbcType=DECIMAL}, 
+    lesson_num = #{lesson_num,jdbcType=INTEGER}, 
+    cover = #{cover,jdbcType=VARCHAR}, 
+    buy_count = #{buy_count,jdbcType=BIGINT}, 
+    view_count = #{view_count,jdbcType=BIGINT}, 
+    version = #{version,jdbcType=BIGINT}, 
+    `status` = #{status,jdbcType=VARCHAR}, 
+    is_deleted = #{is_deleted,jdbcType=TINYINT}, 
+    gmt_create = #{gmt_create,jdbcType=TIMESTAMP}, 
+    gmt_modified = #{gmt_modified,jdbcType=TIMESTAMP}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="com.chad.eduservice.model.Course">
+    <!--@mbg.generated-->
+    insert into guli_edu.edu_course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="teacher_id != null">
+        teacher_id,
+      </if>
+      <if test="subject_id != null">
+        subject_id,
+      </if>
+      <if test="subject_parent_id != null">
+        subject_parent_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="lesson_num != null">
+        lesson_num,
+      </if>
+      <if test="cover != null">
+        cover,
+      </if>
+      <if test="buy_count != null">
+        buy_count,
+      </if>
+      <if test="view_count != null">
+        view_count,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="is_deleted != null">
+        is_deleted,
+      </if>
+      <if test="gmt_create != null">
+        gmt_create,
+      </if>
+      <if test="gmt_modified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="teacher_id != null">
+        #{teacher_id,jdbcType=CHAR},
+      </if>
+      <if test="subject_id != null">
+        #{subject_id,jdbcType=CHAR},
+      </if>
+      <if test="subject_parent_id != null">
+        #{subject_parent_id,jdbcType=CHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="lesson_num != null">
+        #{lesson_num,jdbcType=INTEGER},
+      </if>
+      <if test="cover != null">
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="buy_count != null">
+        #{buy_count,jdbcType=BIGINT},
+      </if>
+      <if test="view_count != null">
+        #{view_count,jdbcType=BIGINT},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="is_deleted != null">
+        #{is_deleted,jdbcType=TINYINT},
+      </if>
+      <if test="gmt_create != null">
+        #{gmt_create,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmt_modified != null">
+        #{gmt_modified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=CHAR},
+      </if>
+      <if test="teacher_id != null">
+        teacher_id = #{teacher_id,jdbcType=CHAR},
+      </if>
+      <if test="subject_id != null">
+        subject_id = #{subject_id,jdbcType=CHAR},
+      </if>
+      <if test="subject_parent_id != null">
+        subject_parent_id = #{subject_parent_id,jdbcType=CHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="lesson_num != null">
+        lesson_num = #{lesson_num,jdbcType=INTEGER},
+      </if>
+      <if test="cover != null">
+        cover = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="buy_count != null">
+        buy_count = #{buy_count,jdbcType=BIGINT},
+      </if>
+      <if test="view_count != null">
+        view_count = #{view_count,jdbcType=BIGINT},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="is_deleted != null">
+        is_deleted = #{is_deleted,jdbcType=TINYINT},
+      </if>
+      <if test="gmt_create != null">
+        gmt_create = #{gmt_create,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmt_modified != null">
+        gmt_modified = #{gmt_modified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chad.eduservice.mapper.ChapterMapper">
+  <resultMap id="BaseResultMap" type="com.chad.eduservice.model.Chapter">
+    <!--@mbg.generated-->
+    <!--@Table guli_edu.edu_chapter-->
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="course_id" jdbcType="CHAR" property="course_id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmt_create" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmt_modified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, course_id, title, sort, gmt_create, gmt_modified
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update guli_edu.edu_chapter
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="course_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.course_id,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="title = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.title,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="sort = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.sort,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="gmt_create = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.gmt_create,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="gmt_modified = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=CHAR} then #{item.gmt_modified,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=CHAR}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update guli_edu.edu_chapter
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="course_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.course_id != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.course_id,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="title = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.title != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.title,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="sort = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sort != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.sort,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="gmt_create = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.gmt_create != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.gmt_create,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="gmt_modified = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.gmt_modified != null">
+            when id = #{item.id,jdbcType=CHAR} then #{item.gmt_modified,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=CHAR}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into guli_edu.edu_chapter
+    (id, course_id, title, sort, gmt_create, gmt_modified)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id,jdbcType=CHAR}, #{item.course_id,jdbcType=CHAR}, #{item.title,jdbcType=VARCHAR}, 
+        #{item.sort,jdbcType=INTEGER}, #{item.gmt_create,jdbcType=TIMESTAMP}, #{item.gmt_modified,jdbcType=TIMESTAMP}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" parameterType="com.chad.eduservice.model.Chapter">
+    <!--@mbg.generated-->
+    insert into guli_edu.edu_chapter
+    (id, course_id, title, sort, gmt_create, gmt_modified)
+    values
+    (#{id,jdbcType=CHAR}, #{course_id,jdbcType=CHAR}, #{title,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{gmt_create,jdbcType=TIMESTAMP}, #{gmt_modified,jdbcType=TIMESTAMP})
+    on duplicate key update 
+    id = #{id,jdbcType=CHAR}, 
+    course_id = #{course_id,jdbcType=CHAR}, 
+    title = #{title,jdbcType=VARCHAR}, 
+    sort = #{sort,jdbcType=INTEGER}, 
+    gmt_create = #{gmt_create,jdbcType=TIMESTAMP}, 
+    gmt_modified = #{gmt_modified,jdbcType=TIMESTAMP}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="com.chad.eduservice.model.Chapter">
+    <!--@mbg.generated-->
+    insert into guli_edu.edu_chapter
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="course_id != null">
+        course_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="gmt_create != null">
+        gmt_create,
+      </if>
+      <if test="gmt_modified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="course_id != null">
+        #{course_id,jdbcType=CHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="gmt_create != null">
+        #{gmt_create,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmt_modified != null">
+        #{gmt_modified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=CHAR},
+      </if>
+      <if test="course_id != null">
+        course_id = #{course_id,jdbcType=CHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="gmt_create != null">
+        gmt_create = #{gmt_create,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmt_modified != null">
+        gmt_modified = #{gmt_modified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>
