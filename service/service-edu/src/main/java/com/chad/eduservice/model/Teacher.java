@@ -2,6 +2,7 @@ package com.chad.eduservice.model;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -14,6 +15,7 @@ import lombok.EqualsAndHashCode;
 @ApiModel(value = "讲师")
 @Data
 @TableName(value = "guli_edu.edu_teacher")
+@Api(tags = {"讲师管理"})
 public class Teacher extends BaseEntity {
 	
 	/**
